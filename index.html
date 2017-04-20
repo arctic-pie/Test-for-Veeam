@@ -70,18 +70,21 @@
                 </div>
             </div>
         </section>
-        <section class="navigation">
+        <section class="navigation menu">
             <div class="container">
                 <nav id="menu">
                     <ul>
                         <li><a href="#integration"><span class= "links-hover-underline">Integration</span></a></li>
                         <li><a href="#backup"><span class= "links-hover-underline">Backup</span></a></li>
                         <li><a href="#recovery"><span class= "links-hover-underline">Recovery</span></a></li>
-                        <li class="helper-second"></li>
-                        <li class="download"><a href="#download" class="download"><span class= "links-hover-underline">Download now</span></a></li>
-                        <li class="helper"></li>
+                        <li class="download"><a href="#download" class="download"><span class= "links-hover-underline">Download now</span></a></li><li class="helper"></li>
                     </ul>
                 </nav>
+                
+<!--
+            <button class="hamburger">&#9776;</button>
+            <button class="cross">&#735;</button>
+-->
             </div>
         </section>
         <section class="integration" id="integration">
@@ -238,6 +241,46 @@
     <div class="overlay"></div>
     <!--                <script src="js/script-min.js" type="text/javascript"></script>-->
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    
+    <script>
+        var navigationFixed = $('.navigation').offset().top;
+        $(window).scroll(function () {
+            var currentScroll = $(window).scrollTop();
+                if (currentScroll >= navigationFixed) {
+
+                    $('.navigation').css({
+                        position: 'fixed',
+                        top: '83px',
+                        left: '0'
+                    });
+                    $('.navigation li:not(.navigation li.helper)').css({
+                        height: '50px'
+                    });
+                    $('.navigation a').css({
+                        lineHeight: '50px'
+                    });
+                }
+
+                else {
+                $('.navigation').css({
+                    position: 'relative',
+                    top: '0',
+                    left: '0'
+                });
+                $('.navigation li:not(.navigation li.helper)').css({
+                    height: '75px'
+                });
+                $('.navigation a').css({
+                    lineHeight: '75px'
+                });
+            }
+        });
+    </script>
+    <script>
+        
+
+                
+    </script>
     <script>
         $(document).ready(function () {
             $("#menu").on("click", "a", function (event) {
@@ -245,53 +288,28 @@
                 var id = $(this).attr('href');
                 var top = $(id).offset().top;
                 $('body,html').animate({
-                    scrollTop: top
+                        scrollTop: (top - 133)
                 }, 1000);
             });
         });
     </script>
     <script>
         var open = document.querySelector(".download-form-btn-modal");
-        //                var popup = document.querySelector(".download-form form");
         var locked = document.querySelector("body");
         var close = document.querySelector(".download-form-modal-close");
         var overlay = document.querySelector(".download-form-modal-wrapper");
-        //        var form = popup.querySelector("form");
-        //        var password = popup.querySelector("[name=password]");
-        //        var storage = localStorage.getItem("login");
         open.addEventListener("click", function (event) {
             event.preventDefault();
-            //            popup.classList.add("open");
             overlay.classList.add("overlay-open");
             locked.classList.add("lock");
-            //            if (storage) { // login.value = storage; // password.focus(); // } // else { // login.focus(); // }
         });
         close.addEventListener("click", function (event) {
             event.preventDefault();
-            //                    popup.classList.remove("feedback-open");
             overlay.classList.remove("overlay-open");
             locked.classList.remove("lock");
-            // popup.classList.remove("modal-error");
+       
         });
-        //        form.addEventListener("submit", function (event) {
-        //            if (!login.value || !password.value) {
-        //                event.preventDefault();
-        //                popup.classList.remove("modal-error");
-        //                popup.offsetWidth = popup.offsetWidth;
-        //                popup.classList.add("modal-error");
-        //            }
-        //            else {
-        //                localStorage.setItem("login", login.value);
-        //            }
-        //        });
-        //        window.addEventListener("keydown", function (event) {
-        //            if (event.keyCode === 27) {
-        //                if (popup.classList.contains("feedback-open")) {
-        //                    popup.classList.remove("feedback-open");
-        //                    popup.classList.remove("modal-error");
-        //                }
-        //            }
-        //        });
+
     </script>
 </body>
 
